@@ -1,6 +1,6 @@
 import { Display } from './Display';
 import { Time } from './Time';
-import { Renderer } from './Renderer';
+import { Renderer } from '../renderer/Renderer'; // Updated Import Path
 
 /**
  * AETHER ENGINE - Core Class
@@ -20,8 +20,11 @@ export class Engine {
 
         // Resize Listener hinzufügen
         window.addEventListener('resize', () => {
-            this._display.resize();
+            this.resize();
         });
+        
+        // Initial einmal resizen, damit Viewport stimmt
+        this.resize();
     }
 
     /**
@@ -58,10 +61,18 @@ export class Engine {
         this._renderer.clear();
 
         // 3. Hier würde später die Game-Logik und Scene.render() kommen
-        // Debug Output alle 5 Sekunden (modulo check ist teuer, nur zum Testen hier)
-        // console.log(`Delta: ${Time.delta.toFixed(4)}`);
+        // Aktuell noch leer, da wir erst in Phase C Szenen rendern.
 
         // 4. Nächsten Frame anfordern
         this._loopId = requestAnimationFrame(this.loop.bind(this));
+    }
+
+    /**
+     * Handled Window-Resizes und synchronisiert Display und Renderer.
+     */
+    private resize(): void {
+        this._display.resize();
+        // Viewport muss synchron zur Canvas-Größe sein
+        this._renderer.setViewport(this._display.width, this._display.height);
     }
 }
