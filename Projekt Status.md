@@ -4,40 +4,44 @@
 
 * index.html  
 * src/main.ts  
+* src/shaders/
+  * basic.vert (NEU)
+  * basic.frag (NEU)
 * src/core/  
-  * Engine.ts  
+  * Engine.ts (Updated)
   * Display.ts  
   * Time.ts  
-  * Renderer.ts (Minimal)  
+  * Renderer.ts (MOVED -> renderer/Renderer.ts)
+* src/renderer/ (NEU)
+  * Renderer.ts (Updated)
+  * Shader.ts (NEU)
+  * GLBuffer.ts (NEU)
 * src/math/  
   * Vector3.ts  
   * Matrix4.ts
 
 ## **Globale Variablen & State**
 
-* Engine: Hauptinstanz, steuert den Loop.  
-* Time: Statisch, trackt deltaTime.  
-* Display: Managed Canvas Resizing.
+* Engine: Managed Loop und Resize.
+* Renderer: Besitzt jetzt GL State Logic (Cull Face, Depth Test).
 
 ## **Letzte Änderung**
 
-* **Phase A (Core & Math) abgeschlossen.**  
-* Vektor- und Matrix-Klassen erstellt (Float32Array Basis).  
-* WebGL2 Kontext Initialisierung implementiert.  
-* Game Loop (requestAnimationFrame) läuft.  
-* Canvas Resize Logik integriert.
+* **Phase B (Renderer Pipeline) begonnen.**
+* Shader-Klasse implementiert (Compiler & Linker).
+* GLBuffer-Klasse implementiert (VBO/EBO Wrapper).
+* Renderer ausgelagert und erweitert.
+* Basic GLSL Shader Files erstellt.
 
 ## **Nächster Schritt**
 
-* **Phase B (The Triangle)**: Implementierung von Shadern, Buffern (VBO/VAO) und dem ersten Draw Call, um etwas anderes als einen grauen Bildschirm zu sehen.
+* **The Triangle**: Wir schreiben Code in `main.ts`, um manuell Daten in die Buffer zu laden, die Shader zu laden und das erste Dreieck zu zeichnen. Wir müssen beweisen, dass die Pipeline dicht ist.
 
 ## **Aktueller Code-Hash**
 
-* index.html  
-* src/math/Vector3.ts  
-* src/math/Matrix4.ts  
-* src/core/Display.ts  
-* src/core/Time.ts  
-* src/core/Renderer.ts  
-* src/core/Engine.ts  
-* src/main.ts
+* src/shaders/basic.vert
+* src/shaders/basic.frag
+* src/renderer/Shader.ts
+* src/renderer/GLBuffer.ts
+* src/renderer/Renderer.ts
+* src/core/Engine.ts
