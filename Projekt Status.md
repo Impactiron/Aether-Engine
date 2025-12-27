@@ -1,47 +1,37 @@
-# **Projekt Status: AETHER ENGINE 1.0**
+project_memory.md
+# Projekt Status: AETHER ENGINE 1.0
 
-## **Dateibaum**
-
-* index.html  
-* src/main.ts  
-* src/shaders/
-  * basic.vert (NEU)
-  * basic.frag (NEU)
-* src/core/  
-  * Engine.ts (Updated)
-  * Display.ts  
-  * Time.ts  
-  * Renderer.ts (MOVED -> renderer/Renderer.ts)
-* src/renderer/ (NEU)
-  * Renderer.ts (Updated)
-  * Shader.ts (NEU)
-  * GLBuffer.ts (NEU)
-* src/math/  
-  * Vector3.ts  
+## Dateibaum
+* index.html
+* src/main.ts (Updated: Proof of Concept Triangle)
+* src/core/
+  * Engine.ts (Updated: Added onRender hook)
+  * Display.ts
+  * Time.ts
+  * Renderer.ts (Updated: Full draw logic)
+* src/math/
+  * Vector3.ts
   * Matrix4.ts
+* src/renderer/ (Neu)
+  * Shader.ts (Neu)
+  * GLBuffer.ts (Neu)
 
-## **Globale Variablen & State**
+## Globale Variablen & State
+* Engine: Hauptinstanz.
+* Renderer: Verwaltet jetzt WebGL States (Depth, Cull).
+* Shader: Kapselt Programme und Uniforms.
 
-* Engine: Managed Loop und Resize.
-* Renderer: Besitzt jetzt GL State Logic (Cull Face, Depth Test).
+## Letzte Änderung
+* **Phase B (Renderer)** gestartet.
+* Low-Level `Renderer`, `Shader` und `GLBuffer` Klassen implementiert.
+* `main.ts` rendert jetzt ein buntes Dreieck mittels direkter API Calls.
 
-## **Letzte Änderung**
+## Nächster Schritt
+* **Phase C (Scene Graph)**: Das manuelle VAO/Buffer Management in `main.ts` ist unsauber. Wir brauchen `Mesh`, `Node` und `Camera` Klassen, um echte 3D-Objekte zu verwalten.
 
-* **Phase B (Renderer Pipeline) begonnen.**
-* Shader-Klasse implementiert (Compiler & Linker).
-* GLBuffer-Klasse implementiert (VBO/EBO Wrapper).
-* Renderer ausgelagert und erweitert.
-* Basic GLSL Shader Files erstellt.
-
-## **Nächster Schritt**
-
-* **The Triangle**: Wir schreiben Code in `main.ts`, um manuell Daten in die Buffer zu laden, die Shader zu laden und das erste Dreieck zu zeichnen. Wir müssen beweisen, dass die Pipeline dicht ist.
-
-## **Aktueller Code-Hash**
-
-* src/shaders/basic.vert
-* src/shaders/basic.frag
+## Aktueller Code-Hash
 * src/renderer/Shader.ts
 * src/renderer/GLBuffer.ts
-* src/renderer/Renderer.ts
+* src/core/Renderer.ts
 * src/core/Engine.ts
+* src/main.ts
